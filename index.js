@@ -22,7 +22,7 @@ const server = http.createServer(app);
 
 app.use(
   cors({
-    origin: "http://localhost:3030",
+    origin: "https://payslip-frontend-6pw3.onrender.com/",
     credentials: true,
   })
 );
