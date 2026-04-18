@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Payslip</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  
+  <body class="text-[13px] text-black font-sans m-10">
+    <!-- Header -->
+    <div class="flex justify-between items-center">
+      <div class="font-bold text-lg">BN Technology Pvt. Ltd.</div>
+      <div class="w-[120px]">
+        <img src="https://thebusinessrule.com/wp-content/uploads/2023/02/Razorpay-5.jpg" alt="Company Logo" />
+      </div>
+    </div>
+
+    <!-- Title -->
+    <div class="text-center my-5 text-[15px] font-bold underline">
+      Pay Slip for the Month of {{MONTH}}
+    </div>
+
+    <!-- Info Tables -->
+    <div class="flex justify-between mb-5 gap-4">
+      <!-- Left Info Table -->
+      <table class="w-1/2 border border-black border-collapse">
+        <tr>
+          <td class="border border-black px-3 py-1.5">Employee ID</td>
+          <td class="border border-black px-3 py-1.5">{{EMP_ID}}</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-3 py-1.5">Employee Name</td>
+          <td class="border border-black px-3 py-1.5">{{NAME}}</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-3 py-1.5">Designation</td>
+          <td class="border border-black px-3 py-1.5">{{DESIGNATION}}</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-3 py-1.5">Date of Joining</td>
+          <td class="border border-black px-3 py-1.5">{{DOJ}}</td>
+        </tr>
+      </table>
+
+      <!-- Right Info Table -->
+      <table class="w-1/2 border border-black border-collapse">
+        <tr>
+          <td class="border border-black px-3 py-1.5">Department</td>
+          <td class="border border-black px-3 py-1.5">{{DEPARTMENT}}</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-3 py-1.5">Location</td>
+          <td class="border border-black px-3 py-1.5">{{LOCATION}}</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-3 py-1.5">Bank A/C No</td>
+          <td class="border border-black px-3 py-1.5">{{ACCOUNT_NO}}</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-3 py-1.5">Working Days</td>
+          <td class="border border-black px-3 py-1.5">{{WORK_DAYS}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Salary Section -->
+    <div class="flex justify-between mb-3 gap-4">
+      <!-- Earnings -->
+      <table class="w-1/2 border border-black border-collapse">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border border-black px-3 py-1.5 text-left">Earnings</th>
+            <th class="border border-black px-3 py-1.5 text-left">Amount (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border border-black px-3 py-1.5">Basic</td>
+            <td class="border border-black px-3 py-1.5">{{BASIC}}</td>
+          </tr>
+          <tr>
+            <td class="border border-black px-3 py-1.5">HRA</td>
+            <td class="border border-black px-3 py-1.5">{{HRA}}</td>
+          </tr>
+          <tr>
+            <td class="border border-black px-3 py-1.5">Other Allowances</td>
+            <td class="border border-black px-3 py-1.5">{{ALLOWANCE}}</td>
+          </tr>
+          <tr>
+            <td class="border border-black px-3 py-1.5">Bonus</td>
+            <td class="border border-black px-3 py-1.5">{{BONUS}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Deductions -->
+      <table class="w-1/2 border border-black border-collapse">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border border-black px-3 py-1.5 text-left">Deductions</th>
+            <th class="border border-black px-3 py-1.5 text-left">Amount (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border border-black px-3 py-1.5">PF</td>
+            <td class="border border-black px-3 py-1.5">{{PF}}</td>
+          </tr>
+          <tr>
+            <td class="border border-black px-3 py-1.5">Professional Tax</td>
+            <td class="border border-black px-3 py-1.5">{{PT}}</td>
+          </tr>
+          <tr>
+            <td class="border border-black px-3 py-1.5">Income Tax</td>
+            <td class="border border-black px-3 py-1.5">{{IT}}</td>
+          </tr>
+          <tr>
+            <td class="border border-black px-3 py-1.5">Other Deductions</td>
+            <td class="border border-black px-3 py-1.5">{{OTHER_DEDUCTIONS}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Summary -->
+    <table class="w-full border border-black border-collapse mt-3">
+      <tr class="bg-gray-100">
+        <td class="border border-black px-3 py-2 font-bold">Gross Earnings</td>
+        <td class="border border-black px-3 py-2 font-bold">{{GROSS_EARNINGS}}</td>
+        <td class="border border-black px-3 py-2 font-bold">Total Deductions</td>
+        <td class="border border-black px-3 py-2 font-bold">{{TOTAL_DEDUCTIONS}}</td>
+        <td class="border border-black px-3 py-2 font-bold">Net Salary</td>
+        <td class="border border-black px-3 py-2 font-bold">{{NET_SALARY}}</td>
+      </tr>
+    </table>
+
+    <!-- Footer -->
+    <div class="text-center text-[12px] mt-8">
+      This is a system-generated payslip and does not require a signature.
+    </div>
+  </body>
+  
+</html>
