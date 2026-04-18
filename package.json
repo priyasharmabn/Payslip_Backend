@@ -8,5 +8,8 @@
     "mongoose": "^8.17.0",
     "number-to-words": "^1.2.4",
     "puppeteer": "^24.15.0"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }
