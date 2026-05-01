@@ -6,7 +6,9 @@ const http = require("http");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const path = require("path");
-const puppeteer = require("puppeteer");
+// const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-core");
+const chromium = require("@sparticuz/chromium");
 const numberToWords = require("number-to-words");
 const InvoiceCounter = require("./models/InvoiceCounter.js");
 
