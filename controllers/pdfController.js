@@ -84,14 +84,14 @@ const generatePdf = async (req, res) => {
       const imageBuffer = fs.readFileSync(logoPath);
       const imageType = path.extname(logoPath).replace(".", ""); // e.g. "png"
       logoBase64 = `data:image/${imageType};base64,${imageBuffer.toString(
-        "base64"
+        "base64",
       )}`;
     }
     data.LOGO = logoBase64;
 
     let html = fs.readFileSync(
       path.join(__dirname, "..", "views", "payslipTemplate.html"),
-      "utf8"
+      "utf8",
     );
 
     for (const key in data) {
@@ -138,7 +138,7 @@ const generateInvoice = async (req, res) => {
       const counter = await InvoiceCounter.findOneAndUpdate(
         { year },
         { $inc: { number: 1 } },
-        { upsert: true, new: true }
+        { upsert: true, new: true },
       );
       return `${year}-${counter.number}`;
     };
@@ -168,7 +168,7 @@ const generateInvoice = async (req, res) => {
       const imageBuffer = fs.readFileSync(logoPath);
       const imageType = path.extname(logoPath).replace(".", "");
       logoBase64 = `data:image/${imageType};base64,${imageBuffer.toString(
-        "base64"
+        "base64",
       )}`;
     }
 
@@ -179,7 +179,7 @@ const generateInvoice = async (req, res) => {
       const imageBuffer = fs.readFileSync(signaturePath);
       const imageType = path.extname(signaturePath).replace(".", ""); // "png"
       signatureBase64 = `data:image/${imageType};base64,${imageBuffer.toString(
-        "base64"
+        "base64",
       )}`;
     }
 
@@ -197,16 +197,16 @@ const generateInvoice = async (req, res) => {
               item.quantity
             }</td>
             <td class="px-3 py-2 border-b border-gray-100 text-right">₹${item.rate.toFixed(
-              2
+              2,
             )}</td>
             <td class="px-3 py-2 border-b border-gray-100 text-right">₹${item.amount.toFixed(
-              2
+              2,
             )}</td>
             <td class="px-3 py-2 border-b border-gray-100 text-right">₹${item.igst.toFixed(
-              2
+              2,
             )}</td>
             <td class="px-3 py-2 border-b border-gray-100 text-right">₹${item.total.toFixed(
-              2
+              2,
             )}</td>
           </tr>
           ${
@@ -223,7 +223,7 @@ const generateInvoice = async (req, res) => {
       __dirname,
       "..",
       "views",
-      "invoiceTemplate.html"
+      "invoiceTemplate.html",
     );
     let html = fs.readFileSync(htmlPath, "utf8");
 
@@ -260,7 +260,12 @@ const generateInvoice = async (req, res) => {
     }
 
     // Generate PDF with Puppeteer
-    const browser = await puppeteer.launch();
+    // const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      headless: "new",
+    });
+    
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: "networkidle0" });
     const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
