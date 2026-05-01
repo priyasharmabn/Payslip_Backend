@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@sparticuz/chromium": "^148.0.0",
     "bcrypt": "^6.0.0",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
@@ -7,7 +8,7 @@
     "express": "^5.1.0",
     "mongoose": "^8.17.0",
     "number-to-words": "^1.2.4",
-    "puppeteer": "^24.15.0"
+    "puppeteer-core": "^24.42.0"
   },
   "scripts": {
     "start": "node index.js"

@@ -6,7 +6,9 @@ const http = require("http");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const path = require("path");
-const puppeteer = require("puppeteer");
+// const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-core");
+const chromium = require("@sparticuz/chromium");
 const numberToWords = require("number-to-words");
 const InvoiceCounter = require("../models/InvoiceCounter");
 const { savePayslip } = require("./payslipController");
@@ -101,7 +103,12 @@ const generatePdf = async (req, res) => {
       html = html.replace(regex, data[key]);
     }
 
-    const browser = await puppeteer.launch();
+    // const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+    });
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: "networkidle0" });
 
@@ -265,7 +272,7 @@ const generateInvoice = async (req, res) => {
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
       headless: "new",
     });
-    
+
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: "networkidle0" });
     const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
